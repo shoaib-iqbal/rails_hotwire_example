@@ -3,5 +3,5 @@ class User < ApplicationRecord
   before_validation do
     self.user_id = SecureRandom.uuid
   end
-  validates_uniqueness_of :name 
+  validates_uniqueness_of :name
 end
