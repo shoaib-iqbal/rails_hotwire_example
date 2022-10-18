@@ -17,6 +17,31 @@ body,h1{
     padding: 0;
     margin: 0;
 }
+ol,ul {
+    list-style: none;
+}
+#mainMenu {
+    margin: 10px;
+   float: right;
+    font-family: sans-serif;
+}
+#mainMenu li {
+    display:block;
+    float:left;
+    margin-left:2px;
+    border:1px solid #000;
+}
+#mainMenu a {
+    display:block;
+    padding:10px;
+    text-decoration:none;
+    background-color:#fff;
+    color:#009;
+}
+#mainMenu a:hover {
+    background-color:#009;
+    color:#fff;
+}
 .container{
     height: 100vh;
     background-color: #ddd;
@@ -28,4 +53,8 @@ body,h1{
 }
 .logo{
     padding: 10px;
+    float: left;
+}
+.buttons{
+    list-style: none;
 }

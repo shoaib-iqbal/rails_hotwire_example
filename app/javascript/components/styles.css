@@ -1,0 +1,191 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+    margin: 5px;
+}
+
+.text-center {
+    text-align: center;
+}
+td,
+th {
+    display: table-cell;
+    vertical-align: inherit;
+    text-align: center;
+    border-collapse: collapse;
+    table-layout: fixed;
+    padding: 10px;
+    margin: 0 auto;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/*td:hover {
+  cursor: pointer;
+  background-color: #ffc107;
+}*/
+
+.nav-menuapi {
+    background-color: white;
+    width: 50%;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #ffc107;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 10px;
+    margin: 1px;
+    text-align: center;
+    padding: 5px;
+}
+
+.nav-menu {
+    background-color: white;
+    width: 50%;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #ffc107;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 10px;
+    margin: 1px;
+    text-align: center;
+    padding: 5px;
+    width: 200px;
+}
+
+.wid293 {
+    width: 100%;
+}
+
+.pad5 {
+    padding: 5px;
+}
+
+.navbar-toggle {
+    position: absolute;
+    top: 0;
+    transition: all 0.5s;
+    -webkit-transition: all 0.25s;
+    right: 9px;
+    margin-left: 50px;
+    text-align: right;
+}
+
+.containerdata {
+    /*background-color: #eeee;*/
+    border-radius: 10px;
+    /*margin: 10px;*/
+    margin-top: 5px;
+    text-align: left;
+    padding: 5px;
+}
+
+containerdata.p {
+    margin: 0px;
+}
+
+.containerheader {
+    /*background-color: #eeee;*/
+    border-radius: 10px;
+    /*margin: 10px;*/
+    margin-top: 30px;
+    text-align: center;
+    padding: 5px;
+    width: 160px;
+    font-weight: 700;
+}
+
+.containerheaderapi {
+    /*background-color: #eeee;*/
+    border-radius: 10px;
+    /*margin: 10px;*/
+    margin-top: 30px;
+    text-align: center;
+    padding: 5px;
+    width: 305px;
+    font-weight: 700;
+}
+
+.label {
+    /*width: 80px;*/
+    display: inline-block;
+    padding: 2px;
+    padding-right: 10px;
+}
+
+.closeright {
+    padding: 2px;
+    width: 21%;
+    font-size: 23px;
+    margin: 3px;
+    transition: all 0.5s;
+    -webkit-transition: all 0.25s;
+}
+
+.closeright:hover {
+    background-color: white;
+    cursor: pointer;
+}
+
+.textoverflow {
+    display: inline-block;
+    width: 58px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.textoverflowapi {
+    display: inline-flex;
+    /*width: 206px;*/
+    /*text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;*/
+    margin-left: auto;
+    margin-right: auto;
+}
+.MTableHeader-header-13 {
+    top: 0;
+    z-index: 0 !important;
+    position: sticky;
+    background-color: #fff;
+    font-weight: 600 !important;
+}
+.MuiTableCell-alignLeft {
+    text-align: center;
+}
+.MuiTableCell-alignRight {
+    text-align: center !important;
+    flex-direction: none;
+}
+.MuiTablePagination-toolbar {
+    min-height: 0px;
+    opacity: 10;
+    padding-right: 2px;
+}
+.MuiToolbar-regular {
+    min-height: 0px !important;
+}
+.MuiTableCell-root {
+    display: table-cell;
+    padding: 16px;
+    font-size: 0.875rem;
+    text-align: left;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.43;
+    border-bottom: 1px solid rgba(224, 224, 224, 1);
+    letter-spacing: 0.01071em;
+    vertical-align: inherit;
+    width: 350px !important;
+}
