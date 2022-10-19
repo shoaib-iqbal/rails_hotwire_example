@@ -1,15 +1,16 @@
 class Api::V1::TransactionsController < ApplicationController
   def index
-    transactions = Transaction.all.order(created_at: :desc)
-    render json: transactions
+    @transactions = Transaction.all.order(created_at: :desc)
+    render json: @transactions.to_json(except: [:created_at,:updated_at],
+                               include: [user: { only: [:name]}])
   end
 
   def create
-    transaction = Transaction.create!(transaction_params)
-    if transaction
-      render json: transaction
+    @transaction = Transaction.create!(transaction_params)
+    if @transaction
+      render json: @transaction
     else
-      render json: transaction.errors
+      render json: @transaction.errors
     end
   end
 

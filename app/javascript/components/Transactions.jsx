@@ -3,7 +3,7 @@ import MaterialTable from "material-table";
 import NewTransaction from "./new";
 import Modal from 'react-modal';
 import Nav from './Nav'
-
+import moment from 'moment'
 const customStyles = {
     content: {
         width: '60%',
@@ -70,14 +70,17 @@ function Transactions() {
     const [title, setTitle] = useState("");
     const [amount, setAmount] = useState("");
     const [ledger, setLedger] = useState("");
-    const [user, setUser] = useState("");
+    const [user, setUser] = useState({});
     //const [email, setEmail] = useState(rowData.email);
     const columns = [
-        {title: "Date", field: "transaction_date"},
+        {title: "Date", field: "transaction_date", type: 'date',
+            dateSetting: {
+                format: 'dd/MM/yyyy'
+            },},
         {title: "Title", field: "title"},
         {title: "Amount", field: "amount"},
         {title: "General Ledger Account", field: "general_ledger_account"},
-        {title: "User", field: "user_id"}
+        {title: "User", field: "user.name"}
     ];
     useEffect(() => {
         fetch("/api/v1/transactions/index")
@@ -105,7 +108,7 @@ function Transactions() {
                     <div className="containerdata">
                         <div className="wid293 pad5">
                             <div className="label"> Transaction Date:</div>
-                            <div className="textoverflowapi">{date}</div>
+                            <div className="textoverflowapi">{moment(date).format('DD/MM/YYYY')}</div>
                         </div>
                         <div className="wid293 pad5">
                             <div className="label">Title:</div>
@@ -121,7 +124,7 @@ function Transactions() {
                         </div>
                         <div className="wid293 pad5">
                             <div className="label">User:</div>
-                            {<div className="textoverflowapi">{user}</div>}
+                            {<div className="textoverflowapi">{user['name']}</div>}
                         </div>
                     </div>
                 </div>
@@ -140,7 +143,7 @@ function Transactions() {
                         setTitle(rowData.title);
                         setAmount(rowData.amount);
                         setLedger(rowData.general_ledger_account);
-                        setUser(rowData.user_id);
+                        setUser(rowData.user);
                     }}
                     title="Transaction Data"
                     data={data}

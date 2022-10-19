@@ -37,7 +37,8 @@ class NewUser extends React.Component {
                 if (response.ok) {
                     return response.json();
                 }
-                throw new Error("Network response was not ok.");
+                console.log(response)
+                alert("Network response was not ok.");
             })
             .then(response => {
                 alert(`${response.name} is successfully added to database`)
