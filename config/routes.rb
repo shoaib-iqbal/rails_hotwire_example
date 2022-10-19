@@ -6,10 +6,9 @@ Rails.application.routes.draw do
       get '/show/:id', to: 'transactions#show'
       delete '/destroy/:id', to: 'transactions#destroy'
       get 'users/index'
+      post 'users/create'
     end
   end
-  # get 'transactions/index'
   root to: "transactions#index"
-  get '/*path' => 'transactions#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

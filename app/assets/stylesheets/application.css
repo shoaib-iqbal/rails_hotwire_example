@@ -46,9 +46,11 @@ ol,ul {
     background-color: #ddd;
 }
 .nav{
-    height: 60px;
+    height: 69px;
     background-color: #2E2F30;
     color: #fff;
+    margin-bottom: 20px;
+    display: block;
 }
 .logo{
     padding: 10px;

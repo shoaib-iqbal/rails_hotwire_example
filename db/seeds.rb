@@ -5,13 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-NUM_OF_USERS = 10
+NUM_OF_USERS = 5
 User.destroy_all
 NUM_OF_USERS.times do |i|
   User.create!({ name: Faker::Name.unique.name })
 end
 
-NUM_OF_TRANSACTIONS = 20
+NUM_OF_TRANSACTIONS = 5
 Transaction.destroy_all
 NUM_OF_TRANSACTIONS.times do |id|
   Transaction.create!({

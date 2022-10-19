@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import MaterialTable from "material-table";
 import NewTransaction from "./new";
 import Modal from 'react-modal';
 import Nav from './Nav'
+
 const customStyles = {
     content: {
         width: '60%',
@@ -10,7 +11,8 @@ const customStyles = {
         left: '20%',
         // transform: 'translate(-50%, -50%)',
     },
-};import { forwardRef } from "react";
+};
+import {forwardRef} from "react";
 import CloseIcon from "@material-ui/icons/Close";
 import AddBox from "@material-ui/icons/AddBox";
 import ArrowDownward from "@material-ui/icons/ArrowDownward";
@@ -29,35 +31,37 @@ import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
 
 import "./styles.css";
+import NewUser from "./NewUser";
 
 const tableIcons = {
-    Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
-    Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
-    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
+    Add: forwardRef((props, ref) => <AddBox {...props} ref={ref}/>),
+    Check: forwardRef((props, ref) => <Check {...props} ref={ref}/>),
+    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref}/>),
+    Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref}/>),
     DetailPanel: forwardRef((props, ref) => (
-        <ChevronRight {...props} ref={ref} />
+        <ChevronRight {...props} ref={ref}/>
     )),
-    Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
-    Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
-    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
-    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
-    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
-    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+    Edit: forwardRef((props, ref) => <Edit {...props} ref={ref}/>),
+    Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref}/>),
+    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref}/>),
+    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref}/>),
+    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref}/>),
+    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref}/>),
     PreviousPage: forwardRef((props, ref) => (
-        <ChevronLeft {...props} ref={ref} />
+        <ChevronLeft {...props} ref={ref}/>
     )),
-    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
-    SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
-    ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
-    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
+    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref}/>),
+    Search: forwardRef((props, ref) => <Search {...props} ref={ref}/>),
+    SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref}/>),
+    ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref}/>),
+    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref}/>)
 };
 
 function Transactions() {
     const [data, setData] = useState([]);
     const [sidebar, setSidebar] = useState(false);
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [userModalIsOpen, userSetIsOpen] = useState(false);
 
     const showSidebar = () => setSidebar(true);
     const closeSideBar = () => setSidebar(false);
@@ -69,27 +73,26 @@ function Transactions() {
     const [user, setUser] = useState("");
     //const [email, setEmail] = useState(rowData.email);
     const columns = [
-        { title: "Date", field: "transaction_date" },
-        { title: "Title", field: "title" },
-        { title: "Amount", field: "amount" },
-        { title: "General Ledger Account", field: "general_ledger_account" },
-        { title: "User", field: "user_id" }
+        {title: "Date", field: "transaction_date"},
+        {title: "Title", field: "title"},
+        {title: "Amount", field: "amount"},
+        {title: "General Ledger Account", field: "general_ledger_account"},
+        {title: "User", field: "user_id"}
     ];
     useEffect(() => {
         fetch("/api/v1/transactions/index")
             .then((resp) => resp.json())
             .then((resp) => {
-                console.log(resp);
                 setData(resp);
             });
     }, []);
-   const onSave=(newTransaction)=>{
-       setData([newTransaction,...data]);
-        console.log("newTransaction",newTransaction)
+    const onSave = (newTransaction) => {
+        setData([newTransaction, ...data]);
+
     }
     return (
         <div>
-            <Nav onModelAction={setIsOpen}/>
+            <Nav onModelAction={setIsOpen} onUserModalIsOpen={userSetIsOpen}/>
             {sidebar ? (
                 <div className="nav-menuapi">
                     <div className="navbar-toggle">
@@ -143,21 +146,26 @@ function Transactions() {
                     data={data}
                     columns={columns}
                     options={{
-                        paging:false,
-                        pageSize:6,       // make initial page size
+                        paging: false,
+                        pageSize: 6,       // make initial page size
                     }}
                 />
             </div>
             <Modal
                 isOpen={modalIsOpen}
+                style={customStyles}
+                contentLabel="Example Modal"
+            >
+                < NewTransaction onCancel={setIsOpen} onSave={onSave}/>
+            </Modal>
+            <Modal
+                isOpen={userModalIsOpen}
                 // onAfterOpen={afterOpenModal}
                 // onRequestClose={closeModal}
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                < NewTransaction onCancel={setIsOpen} onSave={onSave}/>
-
-
+                <NewUser onCancel={userSetIsOpen}/>
             </Modal>
         </div>
     );

@@ -2,6 +2,7 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import UsersSelect from "./UsersSelect";
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 const options = [
     { value: 'chocolate', label: 'Chocolate' },
     { value: 'strawberry', label: 'Strawberry' },
@@ -78,6 +79,7 @@ class NewTransaction extends React.Component {
             .then(response => {
                 this.props.onSave(response)
                 this.props.onCancel(false)
+                NotificationManager.success('Success message', 'Title here');
             })
             .catch(error => console.log(error.message));
     }

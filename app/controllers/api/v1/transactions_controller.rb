@@ -13,18 +13,7 @@ class Api::V1::TransactionsController < ApplicationController
     end
   end
 
-  def show
-    if transaction
-      render json: transaction
-    else
-      render json: transaction.errors
-    end
-  end
-
-  def destroy
-  end
   private
-
   def transaction_params
     params.permit(:transaction_date, :title, :general_ledger_account, :amount,:user_id)
   end
