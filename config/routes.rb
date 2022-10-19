@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       post 'transactions/create'
       get '/show/:id', to: 'transactions#show'
       delete '/destroy/:id', to: 'transactions#destroy'
+      get 'users/index'
     end
   end
   # get 'transactions/index'
