@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import MaterialTable from "material-table";
-import NewTransaction from "./new";
+import NewTransaction from "./NewTransaction";
 import Modal from 'react-modal';
 import Nav from './Nav'
 import moment from 'moment'

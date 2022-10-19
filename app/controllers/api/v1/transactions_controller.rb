@@ -8,7 +8,8 @@ class Api::V1::TransactionsController < ApplicationController
   def create
     @transaction = Transaction.create!(transaction_params)
     if @transaction
-      render json: @transaction
+      render json: @transaction.to_json(except: [:created_at,:updated_at],
+                                        include: [user: { only: [:name]}])
     else
       render json: @transaction.errors
     end
