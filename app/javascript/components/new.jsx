@@ -75,7 +75,10 @@ class NewTransaction extends React.Component {
                 }
                 throw new Error("Network response was not ok.");
             })
-            .then(response => console.log("response",response))
+            .then(response => {
+                this.props.onSave(response)
+                this.props.onCancel(false)
+            })
             .catch(error => console.log(error.message));
     }
     render() {
@@ -85,10 +88,12 @@ class NewTransaction extends React.Component {
             general_ledger_account,
             user_id
         } = this.state;
+        const {onCancel} =  this.props
+
         const valid =  (transaction_date !== "" && amount !== ""  &&  title !== "" && general_ledger_account!=="" && user_id!=="")
 
         return (
-            <div className="container mt-5">
+            <div className="">
                 <div className="row">
                     <div className="col-sm-12 col-lg-6 offset-lg-3">
                         <h1 className="font-weight-normal mb-5">
@@ -133,13 +138,15 @@ class NewTransaction extends React.Component {
                                 />
                             </div>
 
-                            <button type="submit" className="btn btn-primary" disabled={!valid}>
-                                Create Recipe
+                            <button type="submit" className="btn btn-primary mr-2" disabled={!valid}>
+                                Save
                             </button>
+                            <button onClick={()=>onCancel(false)} className={' float-end btn btn-secondary'}>Cancel</button>
 
                         </form>
                     </div>
                 </div>
+
             </div>
         );
     }

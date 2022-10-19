@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
 import MaterialTable from "material-table";
-import ReactDOM from "react-dom";
-import { forwardRef } from "react";
+import NewTransaction from "./new";
+import Modal from 'react-modal';
+import Nav from './Nav'
+const customStyles = {
+    content: {
+        width: '60%',
+        top: '5%',
+        left: '20%',
+        // transform: 'translate(-50%, -50%)',
+    },
+};import { forwardRef } from "react";
 import CloseIcon from "@material-ui/icons/Close";
 import AddBox from "@material-ui/icons/AddBox";
 import ArrowDownward from "@material-ui/icons/ArrowDownward";
@@ -45,9 +54,11 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-function ApitoJson() {
+function Transactions() {
     const [data, setData] = useState([]);
     const [sidebar, setSidebar] = useState(false);
+    const [modalIsOpen, setIsOpen] = useState(false);
+
     const showSidebar = () => setSidebar(true);
     const closeSideBar = () => setSidebar(false);
     //const [id, setId] = useState(rowData.id);
@@ -72,9 +83,13 @@ function ApitoJson() {
                 setData(resp);
             });
     }, []);
-
+   const onSave=(newTransaction)=>{
+       setData([newTransaction,...data]);
+        console.log("newTransaction",newTransaction)
+    }
     return (
         <div>
+            <Nav onModelAction={setIsOpen}/>
             {sidebar ? (
                 <div className="nav-menuapi">
                     <div className="navbar-toggle">
@@ -127,10 +142,25 @@ function ApitoJson() {
                     title="Transaction Data"
                     data={data}
                     columns={columns}
+                    options={{
+                        paging:false,
+                        pageSize:6,       // make initial page size
+                    }}
                 />
             </div>
+            <Modal
+                isOpen={modalIsOpen}
+                // onAfterOpen={afterOpenModal}
+                // onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="Example Modal"
+            >
+                < NewTransaction onCancel={setIsOpen} onSave={onSave}/>
+
+
+            </Modal>
         </div>
     );
 }
 
-export default ApitoJson;
+export default Transactions;
